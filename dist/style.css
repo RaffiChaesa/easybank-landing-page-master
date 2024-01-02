@@ -1,4 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap");
+.has-fade {
+  visibility: hidden;
+}
+
+@keyframes fade-in {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  1% {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 200ms ease-in-out forwards;
+}
+
+@keyframes fade-out {
+  from {
+    visibility: visible;
+    opacity: 1;
+  }
+  99% {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.fade-out {
+  animation: fade-out 200ms ease-in-out forwards;
+}
+
 html {
   font-size: 100%;
   box-sizing: border-box;
@@ -19,11 +59,19 @@ body {
   color: hsl(233, 8%, 62%);
   line-height: 1.3;
 }
+body.noscroll {
+  overflow: hidden;
+}
 
 a,
 a:visited,
 a:hover {
   text-decoration: none;
+}
+
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .flex {
@@ -39,7 +87,8 @@ a:hover {
   align-items: center;
 }
 
-button, .button {
+button,
+.button {
   padding: 0.875rem 2.1875rem;
   background: linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%));
   border: 0;
@@ -50,7 +99,8 @@ button, .button {
   font-weight: 700;
   transition: opacity 300ms ease-in-out;
 }
-button:hover, .button:hover {
+button:hover,
+.button:hover {
   opacity: 0.6;
 }
 
@@ -66,21 +116,60 @@ button:hover, .button:hover {
   }
 }
 
+.header.open .header__toggle > span:first-child {
+  transform: rotate(45deg);
+}
+.header.open .header__toggle > span:nth-child(2) {
+  opacity: 0;
+}
+.header.open .header__toggle > span:last-child {
+  transform: rotate(-45deg);
+}
+.header .overlay {
+  opacity: 0;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: linear-gradient(hsl(233, 26%, 24%), transparent);
+}
 .header nav {
-  padding: 1.125rem 1.5rem;
+  position: relative;
+  background-color: hsl(0, 0%, 100%);
+  padding-top: 1.125rem;
+  padding-bottom: 1.125rem;
 }
 .header__logo img {
   width: 8.8125rem;
   height: 1.375rem;
 }
-.header__menu > span {
+.header__toggle > span {
   display: block;
   width: 26px;
   height: 2px;
   background-color: hsl(233, 26%, 24%);
+  transition: all 300ms ease-in-out;
+  transform-origin: 3px;
 }
-.header__menu > span:not(:last-child) {
-  margin-bottom: 4px;
+.header__toggle > span:not(:last-child) {
+  margin-bottom: 5px;
+}
+.header__menu {
+  position: absolute;
+  width: calc(100% - 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: hsl(0, 0%, 100%);
+  margin-top: 1.5rem;
+  padding: 1.625rem;
+  border-radius: 5px;
+}
+.header__menu a {
+  display: block;
+  padding: 0.625rem;
+  color: hsl(233, 26%, 24%);
+  text-align: center;
 }
 .header__links a {
   position: relative;
