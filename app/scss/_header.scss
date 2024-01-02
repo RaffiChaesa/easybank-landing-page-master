@@ -21,7 +21,7 @@
     .overlay {
         opacity: 0;
         position: fixed;
-        top: 0px;
+        top: 3.625rem;
         right: 0px;
         bottom: 0px;
         left: 0px;
@@ -73,6 +73,7 @@
             display: block;
             padding: 0.625rem;
             color: $darkBlue;
+            font-weight: 400;
             text-align: center;
         }
     }
