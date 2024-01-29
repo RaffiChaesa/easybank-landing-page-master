@@ -79,7 +79,7 @@ a:hover {
         padding-bottom: 4.375rem;
         padding-left: 1.5rem;
 
-        @include breakpoint-up(large){
+        @include breakpoint-up(large) {
             padding-top: 6rem;
             padding-bottom: 6rem;
         }
@@ -94,7 +94,7 @@ a:hover {
         padding-top: 4.375rem;
         padding-bottom: 4.375rem;
 
-        @include breakpoint-up(large){
+        @include breakpoint-up(large) {
             padding-top: 6rem;
             padding-bottom: 6rem;
         }
@@ -103,7 +103,7 @@ a:hover {
     &--pt {
         padding-top: 4.375rem;
 
-        @include breakpoint-up(large){
+        @include breakpoint-up(large) {
             padding-top: 6rem;
         }
     }
@@ -115,7 +115,7 @@ a:hover {
     &--pb {
         padding-bottom: 4.375rem;
 
-        @include breakpoint-up(large){
+        @include breakpoint-up(large) {
             padding-bottom: 6rem;
         }
     }
@@ -145,6 +145,7 @@ a:hover {
 // buttons
 button,
 .button {
+    position: relative;
     display: inline-block;
     padding: 0.875rem 2.1875rem;
     background: linear-gradient(to right, $limeGreen, $brightCyan);
@@ -155,10 +156,22 @@ button,
     font-family: 'Public Sans', sans-serif;
     font-size: $font-sm;
     font-weight: 700;
-    transition: opacity 300ms ease-in-out;
 
-    &:hover {
-        opacity: 0.6;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 0.25);
+        opacity: 0;
+        transition: opacity 300ms ease-in-out;
+    }
+
+    &:hover::before {
+        opacity: 1;
     }
 }
 
